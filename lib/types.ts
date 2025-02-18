@@ -10,3 +10,11 @@ export interface Review {
   fullReview: string
 }
 
+export interface TopFilm {
+  id: string
+  title: string
+  year: number
+  posterUrl: string
+  slug: string
+}
+

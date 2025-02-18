@@ -33,7 +33,11 @@ export default function Home() {
         <h2 className="text-2xl font-semibold mb-4">My Top Three Films</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {topFilms.map((film) => (
-            <div key={film.id} className="space-y-2">
+            <Link
+              key={film.id}
+              href={`/reviews/${film.slug}`}
+              className="space-y-2 block hover:opacity-75 transition-opacity"
+            >
               <Image
                 src={getImagePath(film.posterUrl) || getNotFoundImage()}
                 alt={`${film.title} poster`}
@@ -43,13 +47,8 @@ export default function Home() {
               />
               <h3 className="text-xl font-semibold">{film.title}</h3>
               <p className="text-muted-foreground">{film.year}</p>
-            </div>
+            </Link>
           ))}
-        </div>
-        <div className="mt-6">
-          <Link href="/reviews" className="text-blue-500 hover:underline">
-            View All Reviews
-          </Link>
         </div>
       </section>
     </div>
