@@ -2,14 +2,15 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { topFilms } from "@/lib/data"
-import { getImagePath } from "@/lib/utils"
+import { getImagePath, getNotFoundImage } from "@/lib/utils"
+import { get } from "http"
 
 export default function Home() {
   return (
     <div className="space-y-12">
       <section className="flex flex-col md:flex-row items-center gap-8">
         <Image
-          src={getImagePath("/images/jeremy_profile.jpg") || "/placeholder.svg"}
+          src={getImagePath("/jeremy_profile.jpg") || getNotFoundImage()}
           alt="Jeremy's profile picture"
           width={200}
           height={200}
@@ -35,7 +36,7 @@ export default function Home() {
           {topFilms.map((film) => (
             <div key={film.id} className="space-y-2">
               <Image
-                src={getImagePath(film.posterUrl) || "/placeholder.svg"}
+                src={getImagePath(film.posterUrl) || getNotFoundImage()}
                 alt={`${film.title} poster`}
                 width={300}
                 height={450}

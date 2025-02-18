@@ -2,13 +2,13 @@ import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import Rating from "@/components/rating"
 import type { Review } from "@/lib/types"
-import { getImagePath } from "@/lib/utils"
+import { getImagePath, getNotFoundImage } from "@/lib/utils"
 
 export default function MovieCard({ review }: { review: Review }) {
   return (
     <div className="border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
       <Image
-        src={getImagePath(review.imageUrl) || "./not_found.jpg"}
+        src={getImagePath(review.imageUrl) || getNotFoundImage()}
         alt={`${review.title} poster`}
         width={300}
         height={450}

@@ -8,7 +8,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getImagePath(path: string): string {
-  // return path;
-  return basePath + path;
-  // return path.startsWith("/") ? path : `/${path}`
+  return basePath + "/images" + path;
+}
+
+export function getNotFoundImage(){
+  return basePath + "/images/not_found.jpg";
 }
