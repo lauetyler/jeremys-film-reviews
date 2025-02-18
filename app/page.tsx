@@ -8,12 +8,11 @@ export default function Home() {
     <div className="space-y-12">
       <section className="flex flex-col md:flex-row items-center gap-8">
         <Image
-          src="./images/jeremy_profile.jpg"
+          src="/images/jeremy_profile.jpg"
           alt="Jeremy's profile picture"
           width={200}
           height={200}
             className="rounded-full w-[200px] h-[200px] object-cover"
-          // className="rounded-full"
         />
         <div className="space-y-4">
           <h1 className="text-3xl font-bold">Welcome to My Film Reviews</h1>
@@ -22,7 +21,7 @@ export default function Home() {
             world of movies!
           </p>
           <Button asChild>
-            <Link href="https://letterboxd.com/yourusername" target="_blank" rel="noopener noreferrer">
+            <Link href="https://letterboxd.com/jeremylaue" target="_blank" rel="noopener noreferrer">
               Follow me on Letterboxd
             </Link>
           </Button>
@@ -35,7 +34,7 @@ export default function Home() {
           {topFilms.map((film) => (
             <div key={film.id} className="space-y-2">
               <Image
-                src={film.posterUrl || "./images/not_found.jpg"}
+                src={film.posterUrl || "/images/not_found.jpg"}
                 alt={`${film.title} poster`}
                 width={300}
                 height={450}
