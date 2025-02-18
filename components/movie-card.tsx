@@ -7,7 +7,7 @@ export default function MovieCard({ review }: { review: Review }) {
   return (
     <div className="border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
       <Image
-        src={review.imageUrl || "/placeholder.svg"}
+        src={review.imageUrl || "./images/not_found.jpg"}
         alt={`${review.title} poster`}
         width={300}
         height={450}

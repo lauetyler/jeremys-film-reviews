@@ -35,7 +35,7 @@ export default function Home() {
           {topFilms.map((film) => (
             <div key={film.id} className="space-y-2">
               <Image
-                src={film.posterUrl || "/placeholder.svg"}
+                src={film.posterUrl || "./images/not_found.jpg"}
                 alt={`${film.title} poster`}
                 width={300}
                 height={450}
