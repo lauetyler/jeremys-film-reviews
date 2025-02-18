@@ -8,11 +8,12 @@ export default function Home() {
     <div className="space-y-12">
       <section className="flex flex-col md:flex-row items-center gap-8">
         <Image
-          src="/placeholder.svg?height=200&width=200"
-          alt="Profile picture"
+          src="/images/jeremy_profile.jpg"
+          alt="Jeremy's profile picture"
           width={200}
           height={200}
-          className="rounded-full"
+            className="rounded-full w-[200px] h-[200px] object-cover"
+          // className="rounded-full"
         />
         <div className="space-y-4">
           <h1 className="text-3xl font-bold">Welcome to My Film Reviews</h1>

@@ -34,3 +34,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Save Movie Images
+
+1. Go to [TMBD](https://www.themoviedb.org/movie/)
+2. Locate movie
+3. Click on movie poster to expand it
+4. Open in a new tab
+5. Save as jpg in public/images/movies
+
+## To add review data: 
+
+1. Go to /lib/data.ts
+2. Update data where appropriate
+
