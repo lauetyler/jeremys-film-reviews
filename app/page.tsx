@@ -3,7 +3,6 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { topFilms } from "@/lib/data"
 import { getImagePath, getNotFoundImage } from "@/lib/utils"
-import { get } from "http"
 
 export default function Home() {
   return (
