@@ -22,7 +22,7 @@ export default function Home() {
             the world of movies!
           </p>
           <Button asChild>
-            <Link href="https://letterboxd.com/yourusername" target="_blank" rel="noopener noreferrer">
+            <Link href="https://letterboxd.com/jeremylaue/" target="_blank" rel="noopener noreferrer">
               Follow me on Letterboxd
             </Link>
           </Button>
