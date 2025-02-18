@@ -8,7 +8,7 @@ export default function Home() {
     <div className="space-y-12">
       <section className="flex flex-col md:flex-row items-center gap-8">
         <Image
-          src="/images/jeremy_profile.jpg"
+          src="./images/jeremy_profile.jpg"
           alt="Jeremy's profile picture"
           width={200}
           height={200}
