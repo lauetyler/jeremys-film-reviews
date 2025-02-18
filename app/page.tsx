@@ -1,10 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { topFilms } from "@/lib/data"
+import { topFilms, getRecentReviews } from "@/lib/data"
 import { getImagePath, getNotFoundImage } from "@/lib/utils"
 
 export default function Home() {
+  const recentReviews = getRecentReviews(3)
+
   return (
     <div className="space-y-12">
       <section className="flex flex-col md:flex-row items-center gap-8">
@@ -51,6 +53,35 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Recently Reviewed</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {recentReviews.map((review) => (
+            <Link
+              key={review.id}
+              href={`/reviews/${review.slug}`}
+              className="space-y-2 block hover:opacity-75 transition-opacity"
+            >
+              <Image
+                src={getImagePath(review.imageUrl) || getNotFoundImage()}
+                alt={`${review.title} poster`}
+                width={300}
+                height={450}
+                className="rounded-lg shadow-md"
+              />
+              <h3 className="text-xl font-semibold">{review.title}</h3>
+              <p className="text-muted-foreground">Reviewed on: {review.reviewDate}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <div className="mt-6">
+        <Button asChild>
+          <Link href="/reviews">View All Reviews</Link>
+        </Button>
+      </div>
     </div>
   )
 }
