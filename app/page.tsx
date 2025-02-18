@@ -12,7 +12,7 @@ export default function Home() {
           alt="Jeremy's profile picture"
           width={200}
           height={200}
-            className="rounded-full w-[200px] h-[200px] object-cover"
+          className="rounded-full w-[200px] h-[200px] object-cover"
         />
         <div className="space-y-4">
           <h1 className="text-3xl font-bold">Welcome to My Film Reviews</h1>

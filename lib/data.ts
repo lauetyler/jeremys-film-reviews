@@ -23,7 +23,7 @@ export const reviews: Review[] = [
     reviewDate: "2023-02-20",
     fullReview: "A mind-bending journey through dreams within dreams...",
   },
-  { 
+  {
     id: "3",
     slug: "the-godfather",
     title: "The Godfather",
@@ -34,7 +34,7 @@ export const reviews: Review[] = [
     reviewDate: "2023-02-20",
     fullReview: "The godfather...",
   },
-  { 
+  {
     id: "4",
     slug: "pulp-fiction",
     title: "Pulp Fiction",
@@ -45,7 +45,7 @@ export const reviews: Review[] = [
     reviewDate: "2023-02-20",
     fullReview: "Pulp fiction...",
   },
-  { 
+  {
     id: "5",
     slug: "the-dark-knight",
     title: "The Dark Knight",
