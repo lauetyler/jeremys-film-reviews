@@ -20,7 +20,7 @@ export default function ReviewPage({ params }: Props) {
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row gap-6">
         <Image
-          src={review.imageUrl || "/images/not_found.jpg"}
+          src={review.imageUrl || "./images/not_found.jpg"}
           alt={`${review.title} poster`}
           width={300}
           height={450}
