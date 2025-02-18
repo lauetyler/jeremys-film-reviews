@@ -1,4 +1,4 @@
-import type { Review, TopFilm } from "./types"
+import type { Review } from "./types"
 
 export const reviews: Review[] = [
   {
@@ -11,6 +11,7 @@ export const reviews: Review[] = [
     rating: 5,
     reviewDate: "2023-05-15",
     fullReview: "A timeless classic that explores the human spirit...",
+    isTopFilm: false,
   },
   {
     id: "2",
@@ -22,6 +23,7 @@ export const reviews: Review[] = [
     rating: 4,
     reviewDate: "2023-06-20",
     fullReview: "A mind-bending journey through dreams within dreams...",
+    isTopFilm: false,
   },
   {
     id: "3",
@@ -33,6 +35,7 @@ export const reviews: Review[] = [
     rating: 5,
     reviewDate: "2023-04-10",
     fullReview: "An epic tale of family, power, and the American dream...",
+    isTopFilm: true,
   },
   {
     id: "4",
@@ -44,6 +47,7 @@ export const reviews: Review[] = [
     rating: 5,
     reviewDate: "2023-07-05",
     fullReview: "A groundbreaking masterpiece of nonlinear storytelling...",
+    isTopFilm: true,
   },
   {
     id: "5",
@@ -55,30 +59,7 @@ export const reviews: Review[] = [
     rating: 5,
     reviewDate: "2023-03-18",
     fullReview: "A gripping superhero epic that transcends its genre...",
-  },
-]
-
-export const topFilms: TopFilm[] = [
-  {
-    id: "1",
-    title: "The Godfather",
-    year: 1972,
-    posterUrl: "/movies/the_godfather.jpg?height=450&width=300",
-    slug: "the-godfather",
-  },
-  {
-    id: "2",
-    title: "Pulp Fiction",
-    year: 1994,
-    posterUrl: "/movies/pulp_fiction.jpg?height=450&width=300",
-    slug: "pulp-fiction",
-  },
-  {
-    id: "3",
-    title: "The Dark Knight",
-    year: 2008,
-    posterUrl: "/movies/the_dark_knight.jpg?height=450&width=300",
-    slug: "the-dark-knight",
+    isTopFilm: true,
   },
 ]
 
@@ -108,5 +89,9 @@ export const getRecentReviews = (count: number): Review[] => {
   return [...reviews]
     .sort((a, b) => new Date(b.reviewDate).getTime() - new Date(a.reviewDate).getTime())
     .slice(0, count)
+}
+
+export const getTopFilms = (): Review[] => {
+  return reviews.filter((review) => review.isTopFilm)
 }
 

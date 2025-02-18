@@ -1,11 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { topFilms, getRecentReviews } from "@/lib/data"
+import { getRecentReviews, getTopFilms } from "@/lib/data"
 import { getImagePath, getNotFoundImage } from "@/lib/utils"
 
 export default function Home() {
   const recentReviews = getRecentReviews(3)
+  const topFilms = getTopFilms()
 
   return (
     <div className="space-y-12">
@@ -41,7 +42,7 @@ export default function Home() {
               className="space-y-2 block hover:opacity-75 transition-opacity"
             >
               <Image
-                src={getImagePath(film.posterUrl) || getNotFoundImage()}
+                src={getImagePath(film.imageUrl) || getNotFoundImage()}
                 alt={`${film.title} poster`}
                 width={300}
                 height={450}

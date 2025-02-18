@@ -8,13 +8,6 @@ export interface Review {
   rating: number
   reviewDate: string
   fullReview: string
-}
-
-export interface TopFilm {
-  id: string
-  title: string
-  year: number
-  posterUrl: string
-  slug: string
+  isTopFilm: boolean
 }
 
