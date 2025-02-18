@@ -9,7 +9,7 @@ export default function Home() {
     <div className="space-y-12">
       <section className="flex flex-col md:flex-row items-center gap-8">
         <Image
-          src={getImagePath("./images/jeremy_profile.jpg") || "./images/jeremy_profile.jpg"}
+          src={getImagePath("/images/jeremy_profile.jpg") || "/placeholder.svg"}
           alt="Jeremy's profile picture"
           width={200}
           height={200}
@@ -18,11 +18,11 @@ export default function Home() {
         <div className="space-y-4">
           <h1 className="text-3xl font-bold">Welcome to My Film Reviews</h1>
           <p className="text-lg">
-            I&apos;m a passionate film critic with a keen eye for cinematic excellence. Join me on my journey through the
-            world of movies!
+            I&apos;m a passionate film critic with a keen eye for cinematic excellence. Join me on my journey through
+            the world of movies!
           </p>
           <Button asChild>
-            <Link href="https://letterboxd.com/jeremylaue" target="_blank" rel="noopener noreferrer">
+            <Link href="https://letterboxd.com/yourusername" target="_blank" rel="noopener noreferrer">
               Follow me on Letterboxd
             </Link>
           </Button>
@@ -35,7 +35,7 @@ export default function Home() {
           {topFilms.map((film) => (
             <div key={film.id} className="space-y-2">
               <Image
-                src={getImagePath(film.posterUrl) || "./not_found.jpg"}
+                src={getImagePath(film.posterUrl) || "/placeholder.svg"}
                 alt={`${film.title} poster`}
                 width={300}
                 height={450}
@@ -45,6 +45,11 @@ export default function Home() {
               <p className="text-muted-foreground">{film.year}</p>
             </div>
           ))}
+        </div>
+        <div className="mt-6">
+          <Link href="/reviews" className="text-blue-500 hover:underline">
+            View All Reviews
+          </Link>
         </div>
       </section>
     </div>
