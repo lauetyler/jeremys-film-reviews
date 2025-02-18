@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import Rating from "@/components/rating"
 import { reviews } from "@/lib/data"
 import type { Metadata } from "next"
+import { getImagePath } from "@/lib/utils"
 
 interface Props {
     params: { slug: string }
@@ -21,7 +22,7 @@ export default function ReviewPage({ params }: Props) {
             <div className="flex flex-col md:flex-row gap-6">
                 <Image
                     //   src={review.imageUrl || "./images/not_found.jpg"}
-                    src={review.imageUrl.startsWith("./") ? review.imageUrl.slice(1) : review.imageUrl}
+                    src={getImagePath(review.imageUrl) || "./not_found.jpg"}
                     alt={`${review.title} poster`}
                     width={300}
                     height={450}
