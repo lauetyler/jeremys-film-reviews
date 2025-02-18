@@ -3,6 +3,7 @@ import type { Review } from "./types"
 export const reviews: Review[] = [
   {
     id: "1",
+    slug: "the-shawshank-redemption",
     title: "The Shawshank Redemption",
     year: 1994,
     genres: ["Drama"],
@@ -13,6 +14,7 @@ export const reviews: Review[] = [
   },
   {
     id: "2",
+    slug: "inception",
     title: "Inception",
     year: 2010,
     genres: ["Action", "Sci-Fi", "Thriller"],
@@ -23,6 +25,7 @@ export const reviews: Review[] = [
   },
   { 
     id: "3",
+    slug: "the-godfather",
     title: "The Godfather",
     year: 1972,
     genres: ["Drama", "Crime"],
@@ -33,6 +36,7 @@ export const reviews: Review[] = [
   },
   { 
     id: "4",
+    slug: "pulp-fiction",
     title: "Pulp Fiction",
     year: 1994,
     genres: ["Drama", "Crime"],
@@ -43,6 +47,7 @@ export const reviews: Review[] = [
   },
   { 
     id: "5",
+    slug: "the-dark-knight",
     title: "The Dark Knight",
     year: 2008,
     genres: ["Drama", "Crime"],

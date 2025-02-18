@@ -47,7 +47,7 @@ export default function Reviews() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredReviews.map((review) => (
-          <Link key={review.id} href={`/reviews/${review.id}`}>
+          <Link key={review.id} href={`/reviews/${review.slug}`}>
             <MovieCard review={review} />
           </Link>
         ))}
