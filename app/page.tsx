@@ -17,7 +17,7 @@ export default function Home() {
         <div className="space-y-4">
           <h1 className="text-3xl font-bold">Welcome to My Film Reviews</h1>
           <p className="text-lg">
-            I'm a passionate film critic with a keen eye for cinematic excellence. Join me on my journey through the
+            I&apos;m a passionate film critic with a keen eye for cinematic excellence. Join me on my journey through the
             world of movies!
           </p>
           <Button asChild>
