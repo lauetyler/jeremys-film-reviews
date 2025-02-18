@@ -59,7 +59,7 @@ export const topFilms = [
     id: "1",
     title: "The Godfather",
     year: 1972,
-    posterUrl: "./images/movies/the_godfather.jpg?height=450&width=300",
+    posterUrl: "/images/movies/the_godfather.jpg?height=450&width=300",
   },
   {
     id: "2",

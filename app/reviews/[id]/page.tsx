@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import Rating from "@/components/rating";
 import { reviews } from "@/lib/data";
-import { Metadata } from 'next';
+import { Metadata } from "next";
 
 interface Props {
     params: { id: string }
