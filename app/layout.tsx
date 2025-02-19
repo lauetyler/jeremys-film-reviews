@@ -8,8 +8,11 @@ import Navbar from "@/components/navbar"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "My Film Reviews",
-  description: "A showcase of my film reviews and top picks",
+  title: {
+    default: "Jeremy's Film Reviews",
+    template: "%s | Jeremy's Film Reviews",
+  },
+  description: "A showcase of Jeremy's film reviews and top picks",
 }
 
 export default function RootLayout({
@@ -30,3 +33,4 @@ export default function RootLayout({
     </html>
   )
 }
+
