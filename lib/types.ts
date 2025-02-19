@@ -16,11 +16,9 @@ export interface MovieList {
   slug: string
   title: string
   description: string
-  isRanked: boolean
   movies: {
-    review: Review
+    reviewId: string
     notes?: string
-    rank?: number
   }[]
   createdAt: string
   updatedAt: string
