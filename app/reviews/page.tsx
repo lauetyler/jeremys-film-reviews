@@ -14,7 +14,7 @@ type ViewMode = "grid" | "list" | "compact"
 export default function Reviews() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedGenres, setSelectedGenres] = useState<string[]>([])
-  const [viewMode, setViewMode] = useState<ViewMode>("grid")
+  const [viewMode, setViewMode] = useState<ViewMode>("list")
 
   const filteredReviews = reviews.filter((review) => {
     const matchesSearch = review.title.toLowerCase().includes(searchTerm.toLowerCase())
