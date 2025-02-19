@@ -78,11 +78,15 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="mt-6">
+      <div className="mt-6 flex gap-4">
         <Button asChild>
           <Link href="/reviews">View All Reviews</Link>
+        </Button>
+        <Button asChild variant="outline">
+          <Link href="/lists">Browse My Lists</Link>
         </Button>
       </div>
     </div>
   )
 }
+

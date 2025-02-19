@@ -1,6 +1,7 @@
-import Link from "next/link"
 import Image from "next/image"
-import { filmLists, getFilmsInList } from "@/lib/data"
+import Link from "next/link"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { movieLists } from "@/lib/data"
 import { getImagePath, getNotFoundImage } from "@/lib/utils"
 
 export default function ListsPage() {
@@ -8,42 +9,37 @@ export default function ListsPage() {
         <div className="space-y-8">
             <h1 className="text-3xl font-bold">My Film Lists</h1>
             <div className="grid gap-6">
-                {filmLists.map((list) => {
-                    const films = getFilmsInList(list)
-                    return (
-                        <Link
-                            key={list.id}
-                            href={`/lists/${list.slug}`}
-                            className="block hover:bg-accent rounded-lg p-4 transition-colors"
-                        >
-                            <div className="space-y-4">
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <h2 className="text-2xl font-semibold">{list.title}</h2>
-                                        <p className="text-muted-foreground">{list.description}</p>
-                                    </div>
-                                    <div className="text-sm text-muted-foreground">
-                                        {films.length} films
-                                        {list.isRanked && " • Ranked"}
-                                    </div>
-                                </div>
-                                <div className="flex gap-2 overflow-hidden">
-                                    {films.slice(0, 5).map((film) => (
-                                        <div key={film.id} className="relative w-24 h-36 flex-shrink-0">
+                {movieLists.map((list) => (
+                    <Link key={list.id} href={`/lists/${list.slug}`}>
+                        <Card className="hover:bg-accent transition-colors">
+                            <CardHeader>
+                                <CardTitle>{list.title}</CardTitle>
+                                <CardDescription>{list.description}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="flex gap-2 overflow-x-auto pb-4">
+                                    {list.movies.slice(0, 5).map(({ review }) => (
+                                        <div key={review.id} className="flex-shrink-0">
                                             <Image
-                                                src={getImagePath(film.imageUrl) || getNotFoundImage()}
-                                                alt={film.title}
-                                                fill
-                                                className="object-cover rounded"
+                                                src={getImagePath(review.imageUrl) || getNotFoundImage()}
+                                                alt={`${review.title} poster`}
+                                                width={100}
+                                                height={150}
+                                                className="rounded-md object-cover"
                                             />
                                         </div>
                                     ))}
                                 </div>
-                            </div>
-                        </Link>
-                    )
-                })}
+                                <div className="flex justify-between text-sm text-muted-foreground mt-4">
+                                    <span>{list.movies.length} films</span>
+                                    <span>Updated {list.updatedAt}</span>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                ))}
             </div>
         </div>
     )
 }
+

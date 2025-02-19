@@ -1,5 +1,5 @@
 import type { Review } from "./types"
-import type { FilmList } from "./types"
+import type { MovieList } from "./types"
 
 export const reviews: Review[] = [
   {
@@ -96,45 +96,44 @@ export const getTopFilms = (): Review[] => {
   return reviews.filter((review) => review.isTopFilm)
 }
 
-export const filmLists: FilmList[] = [
+export const movieLists: MovieList[] = [
   {
     id: "1",
-    slug: "best-sci-fi-films",
-    title: "Best Science Fiction Films",
-    description: "A collection of groundbreaking science fiction movies that pushed the boundaries of imagination.",
+    slug: "best-of-2023",
+    title: "Best Films of 2023",
+    description: "My personal selection of the finest films released in 2023, ranked in order of preference.",
     isRanked: true,
-    createdAt: "2024-01-15",
-    films: [
-      { filmId: "2", order: 1 }, // Inception
-      { filmId: "5", order: 2 }, // The Dark Knight
+    movies: [
+      {
+        review: reviews[0],
+        notes: "A masterful creation that left me speechless",
+        rank: 1,
+      },
+      {
+        review: reviews[1],
+        notes: "Innovative storytelling at its finest",
+        rank: 2,
+      },
+      // Add more movies as needed
     ],
+    createdAt: "2023-12-31",
+    updatedAt: "2024-01-15",
   },
   {
     id: "2",
-    slug: "crime-drama-essentials",
-    title: "Crime Drama Essentials",
-    description: "Essential viewing for fans of crime dramas - from mob epics to heist films.",
+    slug: "science-fiction-essentials",
+    title: "Science Fiction Essentials",
+    description: "A collection of must-watch science fiction films that have shaped the genre.",
     isRanked: false,
-    createdAt: "2024-02-01",
-    films: [
-      { filmId: "3" }, // The Godfather
-      { filmId: "4" }, // Pulp Fiction
+    movies: [
+      {
+        review: reviews[1],
+        notes: "A mind-bending exploration of dreams and reality",
+      },
+      // Add more movies as needed
     ],
+    createdAt: "2023-11-15",
+    updatedAt: "2024-01-20",
   },
 ]
 
-export function getList(slug: string): FilmList | undefined {
-  return filmLists.find((list) => list.slug === slug)
-}
-
-export function getFilmsInList(list: FilmList): Review[] {
-  const listFilms = list.films.map((film) => reviews.find((r) => r.id === film.filmId)!)
-  if (list.isRanked) {
-    return listFilms.sort((a, b) => {
-      const orderA = list.films.find((f) => f.filmId === a.id)?.order ?? 0
-      const orderB = list.films.find((f) => f.filmId === b.id)?.order ?? 0
-      return orderA - orderB
-    })
-  }
-  return listFilms
-}
