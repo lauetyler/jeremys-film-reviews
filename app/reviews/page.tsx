@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { LayoutGrid, List, AlignLeft } from "lucide-react"
+import { LayoutGrid, List, AlignLeft, X } from "lucide-react"
 import MovieCard from "@/components/movie-card"
 import ReviewListItem from "@/components/review-list-item"
 import CompactReviewList from "@/components/compact-review-list"
@@ -24,6 +24,10 @@ export default function Reviews() {
 
   const toggleGenre = (genre: string) => {
     setSelectedGenres((prev) => (prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]))
+  }
+
+  const clearGenres = () => {
+    setSelectedGenres([])
   }
 
   return (
@@ -65,17 +69,29 @@ export default function Reviews() {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      <div className="flex flex-wrap gap-2">
-        {genres.map((genre) => (
-          <Button
-            key={genre}
-            variant={selectedGenres.includes(genre) ? "secondary" : "outline"}
-            size="sm"
-            onClick={() => toggleGenre(genre)}
-          >
-            {genre}
-          </Button>
-        ))}
+      <div className="space-y-2">
+        <h2 className="text-lg font-semibold">Genres</h2>
+        <div className="flex flex-wrap gap-2">
+          {genres.map((genre) => (
+            <Button
+              key={genre}
+              variant={selectedGenres.includes(genre) ? "secondary" : "outline"}
+              size="sm"
+              onClick={() => toggleGenre(genre)}
+            >
+              {genre}
+            </Button>
+          ))}
+          {selectedGenres.length > 0 && (
+            <Button variant="outline" size="sm" onClick={clearGenres}>
+              <X className="h-4 w-4 mr-1" />
+              Clear Filters
+            </Button>
+          )}
+        </div>
+        <div className="h-6">
+          {selectedGenres.length === 0 && <p className="text-sm text-muted-foreground">Showing all genres</p>}
+        </div>
       </div>
 
       {viewMode === "grid" && (
