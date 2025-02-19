@@ -18,6 +18,9 @@ export default function Navbar() {
             <Link href="/reviews" className="text-foreground hover:text-primary">
               Reviews
             </Link>
+            <Link href="/lists" className="text-foreground hover:text-primary">
+              Lists
+            </Link>
             <ModeToggle />
           </div>
         </div>

@@ -1,4 +1,5 @@
 import type { Review } from "./types"
+import type { FilmList } from "./types"
 
 export const reviews: Review[] = [
   {
@@ -95,3 +96,45 @@ export const getTopFilms = (): Review[] => {
   return reviews.filter((review) => review.isTopFilm)
 }
 
+export const filmLists: FilmList[] = [
+  {
+    id: "1",
+    slug: "best-sci-fi-films",
+    title: "Best Science Fiction Films",
+    description: "A collection of groundbreaking science fiction movies that pushed the boundaries of imagination.",
+    isRanked: true,
+    createdAt: "2024-01-15",
+    films: [
+      { filmId: "2", order: 1 }, // Inception
+      { filmId: "5", order: 2 }, // The Dark Knight
+    ],
+  },
+  {
+    id: "2",
+    slug: "crime-drama-essentials",
+    title: "Crime Drama Essentials",
+    description: "Essential viewing for fans of crime dramas - from mob epics to heist films.",
+    isRanked: false,
+    createdAt: "2024-02-01",
+    films: [
+      { filmId: "3" }, // The Godfather
+      { filmId: "4" }, // Pulp Fiction
+    ],
+  },
+]
+
+export function getList(slug: string): FilmList | undefined {
+  return filmLists.find((list) => list.slug === slug)
+}
+
+export function getFilmsInList(list: FilmList): Review[] {
+  const listFilms = list.films.map((film) => reviews.find((r) => r.id === film.filmId)!)
+  if (list.isRanked) {
+    return listFilms.sort((a, b) => {
+      const orderA = list.films.find((f) => f.filmId === a.id)?.order ?? 0
+      const orderB = list.films.find((f) => f.filmId === b.id)?.order ?? 0
+      return orderA - orderB
+    })
+  }
+  return listFilms
+}

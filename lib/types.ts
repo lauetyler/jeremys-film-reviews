@@ -11,3 +11,15 @@ export interface Review {
   isTopFilm: boolean
 }
 
+export interface FilmList {
+  id: string
+  slug: string
+  title: string
+  description: string
+  isRanked: boolean
+  createdAt: string
+  films: {
+    filmId: string
+    order?: number // Only present if isRanked is true
+  }[]
+}

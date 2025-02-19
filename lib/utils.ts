@@ -11,6 +11,6 @@ export function getImagePath(path: string): string {
   return basePath + "/images" + path;
 }
 
-export function getNotFoundImage(){
+export function getNotFoundImage() {
   return basePath + "/images/not_found.jpg";
 }
