@@ -3,15 +3,18 @@
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { LayoutGrid, List } from "lucide-react"
+import { LayoutGrid, List, AlignLeft } from "lucide-react"
 import MovieCard from "@/components/movie-card"
 import ReviewListItem from "@/components/review-list-item"
+import CompactReviewList from "@/components/compact-review-list"
 import { reviews, genres } from "@/lib/data"
+
+type ViewMode = "grid" | "list" | "compact"
 
 export default function Reviews() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedGenres, setSelectedGenres] = useState<string[]>([])
-  const [viewMode, setViewMode] = useState<"list" | "grid">("list")
+  const [viewMode, setViewMode] = useState<ViewMode>("grid")
 
   const filteredReviews = reviews.filter((review) => {
     const matchesSearch = review.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -28,6 +31,14 @@ export default function Reviews() {
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold">Movie Reviews</h1>
         <div className="flex space-x-2">
+          <Button
+            variant={viewMode === "compact" ? "default" : "outline"}
+            size="icon"
+            onClick={() => setViewMode("compact")}
+            aria-label="Compact view"
+          >
+            <AlignLeft className="h-4 w-4" />
+          </Button>
           <Button
             variant={viewMode === "list" ? "default" : "outline"}
             size="icon"
@@ -67,19 +78,28 @@ export default function Reviews() {
         ))}
       </div>
 
-      {viewMode === "grid" ? (
+      {viewMode === "grid" && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredReviews.map((review) => (
             <MovieCard key={review.id} review={review} />
           ))}
         </div>
-      ) : (
+      )}
+
+      {viewMode === "list" && (
         <div className="space-y-4">
           {filteredReviews.map((review) => (
             <ReviewListItem key={review.id} review={review} />
           ))}
         </div>
       )}
+
+      {viewMode === "compact" && (
+        <div className="border rounded-lg shadow-sm bg-card max-h-[70vh] overflow-y-auto">
+          <CompactReviewList reviews={filteredReviews} />
+        </div>
+      )}
     </div>
   )
 }
+
