@@ -19,7 +19,7 @@ export default function Home() {
           className="rounded-full w-[200px] h-[200px] object-cover"
         />
         <div className="space-y-4">
-          <h1 className="text-3xl font-bold">Welcome to Jeremy's Film Reviews</h1>
+          <h1 className="text-3xl font-bold">Welcome to Jeremy&apos;s Film Reviews</h1>
           <p className="text-lg">
             I&apos;m a passionate film critic with a keen eye for cinematic excellence. Join me on my journey through
             the world of movies!
