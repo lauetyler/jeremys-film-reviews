@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { LayoutGrid, List, AlignLeft } from "lucide-react"
@@ -12,7 +12,11 @@ import { reviews, genres } from "@/lib/data"
 
 type ViewMode = "grid" | "list" | "compact"
 
-const ITEMS_PER_PAGE = 10
+const ITEMS_PER_PAGE = {
+  grid: 9,
+  list: 10,
+  compact: 30,
+}
 
 export default function Reviews() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -20,14 +24,19 @@ export default function Reviews() {
   const [viewMode, setViewMode] = useState<ViewMode>("list")
   const [currentPage, setCurrentPage] = useState(1)
 
-  const filteredReviews = reviews.filter((review) => {
-    const matchesSearch = review.title.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesGenre = selectedGenres.length === 0 || review.genres.some((genre) => selectedGenres.includes(genre))
-    return matchesSearch && matchesGenre
-  })
+  const filteredReviews = useMemo(() => {
+    return reviews.filter((review) => {
+      const matchesSearch = review.title.toLowerCase().includes(searchTerm.toLowerCase())
+      const matchesGenre = selectedGenres.length === 0 || review.genres.some((genre) => selectedGenres.includes(genre))
+      return matchesSearch && matchesGenre
+    })
+  }, [searchTerm, selectedGenres])
 
-  const totalPages = Math.ceil(filteredReviews.length / ITEMS_PER_PAGE)
-  const paginatedReviews = filteredReviews.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+  const totalPages = Math.ceil(filteredReviews.length / ITEMS_PER_PAGE[viewMode])
+  const paginatedReviews = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE[viewMode]
+    return filteredReviews.slice(startIndex, startIndex + ITEMS_PER_PAGE[viewMode])
+  }, [filteredReviews, currentPage, viewMode])
 
   const toggleGenre = (genre: string) => {
     setSelectedGenres((prev) => (prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]))
@@ -44,6 +53,11 @@ export default function Reviews() {
     window.scrollTo(0, 0) // Scroll to top when changing pages
   }
 
+  const handleViewModeChange = (newMode: ViewMode) => {
+    setViewMode(newMode)
+    setCurrentPage(1) // Reset to first page when changing view mode
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -52,7 +66,7 @@ export default function Reviews() {
           <Button
             variant={viewMode === "compact" ? "default" : "outline"}
             size="icon"
-            onClick={() => setViewMode("compact")}
+            onClick={() => handleViewModeChange("compact")}
             aria-label="Compact view"
           >
             <AlignLeft className="h-4 w-4" />
@@ -60,7 +74,7 @@ export default function Reviews() {
           <Button
             variant={viewMode === "list" ? "default" : "outline"}
             size="icon"
-            onClick={() => setViewMode("list")}
+            onClick={() => handleViewModeChange("list")}
             aria-label="List view"
           >
             <List className="h-4 w-4" />
@@ -68,7 +82,7 @@ export default function Reviews() {
           <Button
             variant={viewMode === "grid" ? "default" : "outline"}
             size="icon"
-            onClick={() => setViewMode("grid")}
+            onClick={() => handleViewModeChange("grid")}
             aria-label="Grid view"
           >
             <LayoutGrid className="h-4 w-4" />
