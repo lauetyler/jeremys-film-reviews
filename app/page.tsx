@@ -5,8 +5,8 @@ import { getRecentReviews, getTopFilms } from "@/lib/data"
 import { getImagePath, getNotFoundImage } from "@/lib/utils"
 
 export default function Home() {
-  const recentReviews = getRecentReviews(3)
-  const topFilms = getTopFilms()
+  const recentReviews = getRecentReviews(5)
+  const topFilms = getTopFilms().slice(0, 5)
 
   return (
     <div className="space-y-12">
@@ -19,7 +19,7 @@ export default function Home() {
           className="rounded-full w-[200px] h-[200px] object-cover"
         />
         <div className="space-y-4">
-          <h1 className="text-3xl font-bold">Welcome to My Film Reviews</h1>
+          <h1 className="text-3xl font-bold">Welcome to Jeremy's Film Reviews</h1>
           <p className="text-lg">
             I&apos;m a passionate film critic with a keen eye for cinematic excellence. Join me on my journey through
             the world of movies!
@@ -33,8 +33,8 @@ export default function Home() {
       </section>
 
       <section>
-        <h2 className="text-2xl font-semibold mb-4">My Top Three Films</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <h2 className="text-2xl font-semibold mb-4">My Top Five Films</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {topFilms.map((film) => (
             <Link
               key={film.id}
@@ -46,10 +46,10 @@ export default function Home() {
                 alt={`${film.title} poster`}
                 width={300}
                 height={450}
-                className="rounded-lg shadow-md"
+                className="rounded-lg shadow-md w-full"
               />
-              <h3 className="text-xl font-semibold">{film.title}</h3>
-              <p className="text-muted-foreground">{film.year}</p>
+              <h3 className="text-lg font-semibold">{film.title}</h3>
+              <p className="text-sm text-muted-foreground">{film.year}</p>
             </Link>
           ))}
         </div>
@@ -57,7 +57,7 @@ export default function Home() {
 
       <section>
         <h2 className="text-2xl font-semibold mb-4">Recently Reviewed</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {recentReviews.map((review) => (
             <Link
               key={review.id}
@@ -69,10 +69,10 @@ export default function Home() {
                 alt={`${review.title} poster`}
                 width={300}
                 height={450}
-                className="rounded-lg shadow-md"
+                className="rounded-lg shadow-md w-full"
               />
-              <h3 className="text-xl font-semibold">{review.title}</h3>
-              <p className="text-muted-foreground">Reviewed on: {review.reviewDate}</p>
+              <h3 className="text-lg font-semibold">{review.title}</h3>
+              <p className="text-sm text-muted-foreground">Reviewed on: {review.reviewDate}</p>
             </Link>
           ))}
         </div>
