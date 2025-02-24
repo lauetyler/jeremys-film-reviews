@@ -13,9 +13,9 @@ import { reviews, genres } from "@/lib/data"
 type ViewMode = "grid" | "list" | "compact"
 
 const ITEMS_PER_PAGE = {
-  grid: 9,
+  grid: 12,
   list: 10,
-  compact: 30,
+  compact: 20,
 }
 
 export default function Reviews() {
@@ -124,29 +124,40 @@ export default function Reviews() {
         </div>
       </div>
 
-      {viewMode === "grid" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {paginatedReviews.map((review) => (
-            <MovieCard key={review.id} review={review} />
-          ))}
+      {filteredReviews.length === 0 ? (
+        <div className="text-center py-10">
+          <p className="text-xl font-semibold text-muted-foreground">No matching movies found</p>
+          <p className="text-sm text-muted-foreground mt-2">Try adjusting your search or filter criteria</p>
         </div>
-      )}
+      ) : (
+        <>
+          {viewMode === "grid" && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {paginatedReviews.map((review) => (
+                <MovieCard key={review.id} review={review} />
+              ))}
+            </div>
+          )}
 
-      {viewMode === "list" && (
-        <div className="space-y-4">
-          {paginatedReviews.map((review) => (
-            <ReviewListItem key={review.id} review={review} />
-          ))}
-        </div>
-      )}
+          {viewMode === "list" && (
+            <div className="space-y-4">
+              {paginatedReviews.map((review) => (
+                <ReviewListItem key={review.id} review={review} />
+              ))}
+            </div>
+          )}
 
-      {viewMode === "compact" && (
-        <div className="border rounded-lg shadow-sm bg-card">
-          <CompactReviewList reviews={paginatedReviews} />
-        </div>
-      )}
+          {viewMode === "compact" && (
+            <div className="border rounded-lg shadow-sm bg-card">
+              <CompactReviewList reviews={paginatedReviews} />
+            </div>
+          )}
 
-      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+          {totalPages > 1 && (
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+          )}
+        </>
+      )}
     </div>
   )
 }
