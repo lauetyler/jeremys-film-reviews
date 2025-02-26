@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { format } from "date-fns"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { movieLists, getReviewById } from "@/lib/data"
 import { getImagePath, getNotFoundImage } from "@/lib/utils"
@@ -20,8 +21,9 @@ export default function ListsPage() {
                                 <div className="flex gap-2 overflow-x-auto pb-4">
                                     {list.movies.slice(0, 5).map(({ reviewId }) => {
                                         const review = getReviewById(reviewId)
-                                        return review ? (
-                                            <div key={review.id} className="flex-shrink-0">
+                                        if (!review) return null // Skip if review doesn't exist
+                                        return (
+                                            <div key={reviewId} className="flex-shrink-0">
                                                 <Image
                                                     src={getImagePath(review.imageUrl) || getNotFoundImage()}
                                                     alt={`${review.title} poster`}
@@ -30,12 +32,12 @@ export default function ListsPage() {
                                                     className="rounded-md object-cover"
                                                 />
                                             </div>
-                                        ) : null
+                                        )
                                     })}
                                 </div>
                                 <div className="flex justify-between text-sm text-muted-foreground mt-4">
                                     <span>{list.movies.length} films</span>
-                                    <span>Updated {list.updatedAt}</span>
+                                    <span>Updated {format(new Date(list.updatedAt), "MMM d, yyyy")}</span>
                                 </div>
                             </CardContent>
                         </Card>

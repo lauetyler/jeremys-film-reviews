@@ -1,9 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
+import { format } from "date-fns"
 import { Badge } from "@/components/ui/badge"
 import Rating from "@/components/rating"
 import type { Review } from "@/lib/types"
-import { getImagePath, getNotFoundImage } from "@/lib/utils"
+import { getImagePath } from "@/lib/utils"
 
 export default function ReviewListItem({ review }: { review: Review }) {
   return (
@@ -11,7 +12,7 @@ export default function ReviewListItem({ review }: { review: Review }) {
       <div className="flex gap-4">
         <div className="flex-shrink-0">
           <Image
-            src={getImagePath(review.imageUrl) || getNotFoundImage()}
+            src={getImagePath(review.imageUrl) || "/placeholder.svg"}
             alt={`${review.title} poster`}
             width={80}
             height={120}
@@ -30,7 +31,7 @@ export default function ReviewListItem({ review }: { review: Review }) {
                   </Badge>
                 ))}
               </div>
-              <p className="text-sm">Reviewed on: {review.reviewDate}</p>
+              <p className="text-sm">Reviewed on: {format(new Date(review.reviewDate), "MMM d, yyyy")}</p>
             </div>
             <Rating rating={review.rating} />
           </div>

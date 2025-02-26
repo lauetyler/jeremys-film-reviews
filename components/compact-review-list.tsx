@@ -34,7 +34,7 @@ export default function CompactReviewList({ reviews }: { reviews: Review[] }) {
               </div>
             </div>
             <span className="text-muted-foreground whitespace-nowrap ml-2">
-              {format(new Date(review.reviewDate), "MM/dd/yy")}
+              {format(new Date(review.reviewDate), "MMM d, yyyy")}
             </span>
           </Link>
         </li>

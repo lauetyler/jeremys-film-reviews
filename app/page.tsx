@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { format } from "date-fns"
 import { Button } from "@/components/ui/button"
 import { getRecentReviews, getTopFilms } from "@/lib/data"
 import { getImagePath, getNotFoundImage } from "@/lib/utils"
@@ -72,7 +73,7 @@ export default function Home() {
                 className="rounded-lg shadow-md w-full"
               />
               <h3 className="text-lg font-semibold">{review.title}</h3>
-              <p className="text-sm text-muted-foreground">Reviewed on: {review.reviewDate}</p>
+              <p className="text-sm text-muted-foreground">Reviewed on: {format(new Date(review.reviewDate), "MMM d, yyyy")}</p>
             </Link>
           ))}
         </div>

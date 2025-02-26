@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { notFound } from "next/navigation"
+import { format } from "date-fns"
 import { Badge } from "@/components/ui/badge"
 import Rating from "@/components/rating"
 import { reviews } from "@/lib/data"
@@ -38,7 +39,7 @@ export default function ReviewPage({ params }: Props) {
                 </Badge>
               ))}
             </div>
-            <p>Reviewed on: {review.reviewDate}</p>
+            <p>Reviewed on: {format(new Date(review.reviewDate), "MMM d, yyyy")}</p>
             <Rating rating={review.rating} />
           </div>
         </div>
