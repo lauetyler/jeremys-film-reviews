@@ -7,8 +7,11 @@ export default function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold">
+            <Link href="/" className="text-2xl font-bold hidden md:block">
               Jeremy&apos;s Film Reviews
+            </Link>
+            <Link href="/" className="text-2xl font-bold md:hidden">
+              JFR
             </Link>
           </div>
           <div className="flex items-center space-x-4">
